@@ -1,9 +1,9 @@
 import { HomeContainer, Product } from "@/styles/pages/home"
 import Image from "next/image"
 
+import { stripe } from "@/lib/stripe"
 import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from 'keen-slider/react'
-import { stripe } from "@/lib/stripe"
 import { GetStaticProps } from "next"
 import Stripe from "stripe"
 
@@ -54,7 +54,10 @@ export const getStaticProps: GetStaticProps = async () => {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
-      price: price.unit_amount ? price.unit_amount / 100 : 0,
+      price: new Intl.NumberFormat('pt-BR',{
+        style: 'currency',
+        currency: 'BRL',
+      }).format(price.unit_amount ? price.unit_amount / 100 : 0),
     }
   })
 
@@ -62,6 +65,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       products
     },
-    revalidate: 60*60*2 //2hours
+    revalidate: 2 //2hours
   }
 }
