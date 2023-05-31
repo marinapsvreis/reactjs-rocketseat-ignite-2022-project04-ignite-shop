@@ -35,6 +35,7 @@ export default function Product({ product }: ProductProps){
         } catch (err){
             //Conectar com uma ferramenta de observabilidade (Datadog / Sentry)
             alert('Falha ao redirecionar ao checkout')
+            console.log(err)
 
             setIsCreatingCheckoutSession(false)
         }
