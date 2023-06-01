@@ -10,7 +10,8 @@ export const HeaderContainer = styled('header', {
     alignItems: 'center',
     justifyContent: 'center',
 
-    button: {
+    
+    'button': {
         marginLeft: 'auto'
     }
 })
