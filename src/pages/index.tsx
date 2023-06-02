@@ -3,15 +3,15 @@ import Image from "next/image"
 
 import Head from 'next/head'
 
+import { CartButton } from "@/components/CartButton"
+import { IProduct } from "@/contexts/CartContext"
+import { useCart } from "@/hooks/useCart"
 import { stripe } from "@/lib/stripe"
 import useEmblaCarousel from "embla-carousel-react"
 import { GetStaticProps } from "next"
 import Link from "next/link"
-import Stripe from "stripe"
-import { CartButton } from "@/components/CartButton"
-import { useCart } from "@/hooks/useCart"
-import { IProduct } from "@/contexts/CartContext"
 import { MouseEvent } from "react"
+import Stripe from "stripe"
 
 interface HomeProps {
   products: IProduct[]
@@ -83,7 +83,7 @@ export const getStaticProps: GetStaticProps = async () => {
         currency: 'BRL',
       }).format(price.unit_amount ? price.unit_amount / 100 : 0),
       numberPrice: price.unit_amount ? price.unit_amount / 100 : 0,
-      defaultPrideId: price.id
+      defaultPriceId: price.id
     }
   })
 
