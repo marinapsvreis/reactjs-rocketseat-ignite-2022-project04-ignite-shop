@@ -11,6 +11,7 @@ import Stripe from "stripe"
 import { CartButton } from "@/components/CartButton"
 import { useCart } from "@/hooks/useCart"
 import { IProduct } from "@/contexts/CartContext"
+import { MouseEvent } from "react"
 
 interface HomeProps {
   products: IProduct[]
@@ -24,6 +25,11 @@ export default function Home({ products }: HomeProps) {
   })
 
   const { addToCart } = useCart()
+
+  function handleAddToCart(e: MouseEvent<HTMLButtonElement>, product: IProduct) {
+    e.preventDefault();
+    addToCart(product);
+  }
   
   return (
     <>
@@ -45,7 +51,7 @@ export default function Home({ products }: HomeProps) {
                     <strong>{product.name}</strong>
                     <span>{product.price}</span>
                   </div>
-                  <CartButton color="green" size="large" onClick={() => addToCart(product)}/>
+                  <CartButton color="green" size="large" onClick={(event) => handleAddToCart(event, product)}/>
                 </footer>
               </Product>
               </Link>
