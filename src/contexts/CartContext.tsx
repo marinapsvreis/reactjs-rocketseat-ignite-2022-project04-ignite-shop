@@ -1,3 +1,4 @@
+import Product from "@/pages/product/[id]";
 import { ReactNode, createContext, useState } from "react";
 
 export interface IProduct {
@@ -12,7 +13,9 @@ export interface IProduct {
 
 interface CartContextData {
     cartItems: IProduct[]
+    cartTotal: number
     addToCart: (product: IProduct) => void
+    removeCartItem: (productId: string) => void
     checkIfItemAlreadyExists: (productId: string) => boolean
 }
 
@@ -27,9 +30,17 @@ export const CartContext = createContext({
 
 export function CartContextProvider({children}: CartContextProviderProps) {
     const [cartItems, setCartItems] = useState<IProduct[]>([])
+    
+    const cartTotal = cartItems.reduce((total, product) => {
+        return total + product.numberPrice
+    }, 0)
 
     function addToCart(product: IProduct){
         setCartItems(state => [...state, product]);
+    }
+
+    function removeCartItem(productId: string){
+        setCartItems((state) => state.filter((item) => item.id !== productId))
     }
 
     function checkIfItemAlreadyExists(productId: string){
@@ -37,7 +48,7 @@ export function CartContextProvider({children}: CartContextProviderProps) {
     }
 
     return (
-        <CartContext.Provider value={{cartItems, addToCart, checkIfItemAlreadyExists}}>
+        <CartContext.Provider value={{cartItems, cartTotal, addToCart, removeCartItem, checkIfItemAlreadyExists}}>
             {children}
         </CartContext.Provider>
     )
