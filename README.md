@@ -1,4 +1,4 @@
-## About
+## ℹ️ About
 
 - Ignite Shop is an e-commerce platform where we have a list of products (shirts) to be sold.
 - In this project, I had the opportunity to improve the application taught during Module 4 of Rocketseat's React.js 2022.
@@ -9,6 +9,20 @@ After the end of the lessons, the application went directly from the product pag
 The challenge afterwards was to implement a shopping cart in this application and obtain the Stripe checkout screen with the list of products added to the cart.
 
 To run the project, you can use the following command: ```npm run dev```
+
+
+## ⚙️ Technologies
+- React.js
+- Next.js
+- Typescript
+- Axios
+- API Stripe (Payments)
+- Stitches (CSS-in-JS)
+- Radix UI (Unstyled, accessible components for building)
+- Phosphor React (Icons)
+- Embla Carousel React (Slider)
+
+## 🖥 Project Images
 
 ![preview](./src/assets/IgniteShop.gif)
 
